@@ -80,7 +80,9 @@ Fmecab_new(emacs_env *env, ptrdiff_t nargs, emacs_value args[], void *data)
 		}
 		free(argv);
 	} else {
-		// XXX should throw error
+		emacs_value errmsg = env->make_string(env, "Invalid argument",
+						      sizeof("Invalid argument"));
+		env->non_local_exit_signal(env, env->intern(env, "error"), errmsg);
 		return env->intern(env, "nil");
 	}
 
@@ -117,6 +119,9 @@ Fmecab_sparse_to_list(emacs_env *env, ptrdiff_t nargs, emacs_value args[], void 
 
 	if (mecab_nbest_init(mecab, input) == 0) {
 		free(input);
+		emacs_value errmsg = env->make_string(env, "Failed mecab_nbest_init",
+						      sizeof("Failed mecab_nbest_init"));
+		env->non_local_exit_signal(env, env->intern(env, "error"), errmsg);
 		return env->intern(env, "nil");
 	}
 
