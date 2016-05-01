@@ -33,9 +33,13 @@
     (mecab-core-new (apply #'vector dictionaries))))
 
 (cl-defun mecab-sparse-to-string (mecab input &optional (limit -1))
+  (cl-assert (not (null mecab)))
+  (cl-assert (stringp input))
   (mecab-core-sparse-to-string mecab input limit))
 
 (cl-defun mecab-sparse-to-list (mecab input &optional (limit -1))
+  (cl-assert (not (null mecab)))
+  (cl-assert (stringp input))
   (mecab-core-sparse-to-list mecab input limit))
 
 (provide 'mecab)
