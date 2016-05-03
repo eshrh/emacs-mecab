@@ -20,8 +20,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <fcntl.h>
-#include <unistd.h>
 #include <emacs-module.h>
 
 #include <mecab.h>
