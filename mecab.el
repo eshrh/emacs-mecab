@@ -24,6 +24,8 @@
 ;;; Code:
 
 (require 'cl-lib)
+(if (not (file-exists-p "mecab-core.o"))
+    (shell-command "make"))
 (require 'mecab-core)
 
 ;;;###autoload
